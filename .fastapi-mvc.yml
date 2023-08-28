@@ -1,0 +1,21 @@
+# Changes here will be overwritten by Copier
+_commit: 0.4.0
+_src_path: https://github.com/fastapi-mvc/copier-project.git
+aiohttp: false
+author: Pranoy Paul
+chart_name: iam
+container_image_name: iam
+copyright_date: '2023'
+email: pranoypaul@gmail.com
+fastapi_mvc_version: 0.26.0
+github_actions: false
+helm: true
+license: MIT
+nix: false
+package_name: iam
+project_description: Iam microservice.
+project_name: iam
+redis: false
+repo_url: https://your.repo.url.here
+script_name: iam
+version: 0.1.0
