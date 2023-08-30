@@ -61,7 +61,7 @@ async def readiness_check():
             ).dict(exclude_none=True),
         )
 
-    return CustomJSONResponse(status_Code=200, message="Healthcheck success", content=response).response()
+    return CustomJSONResponse(status_code=200, message="Healthcheck success", content=response).response()
 
 ##Add health check for mogndb and the app as such
 
