@@ -1,0 +1,633 @@
+{
+	"info": {
+		"_postman_id": "42946dd5-9381-4303-927f-2f18f9e7c554",
+		"name": "IAM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/iam/health",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"iam",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"pranoy\",\n    \"email\": \"pranoypaul@gmail.com\",\n    \"first_name\": \"Pranoy Schanton Paul\",\n    \"last_name\": \"Paul\",\n    \"middle_name\": \"Schanton\",\n    \"secret_key\": \"pranoy123\",\n    \"roles\": [\"admin\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/rbacpub/create_user",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"rbacpub",
+						"create_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaGFudSIsImV4cCI6MTY3NzQ0Njc3Nn0.LVVPrNKSAzvbaOgYf3-VyzPYCTZmhX-xFRZEW1AJnhE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "johndoe",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "default",
+							"disabled": true
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/auth/users/me",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"auth",
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users_list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/auth/users/me/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"auth",
+						"users",
+						"me",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token_validate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcmFub3kiLCJleHAiOjE2NzcxNzY2MTR9.PfJ_02pP-HNKBg9rMG325anYyNdnuN_H4d3nQ1RkjmU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "johndoe",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "default",
+							"disabled": true
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/auth/validate_token",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"auth",
+						"validate_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token_get",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "shanu",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "pranoy123",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/pub/create_token",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"pub",
+						"create_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token_refresh",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsImtpZCI6IkhQZTA5UG1weUJYbGxoRVhSU2JqT0k4WmZlUEk3TXl5IiwidHlwIjoiSldUIn0.eyJzdWIiOiJzaGFudSIsImV4cCI6MTY3NzU4NTU5NX0.IcTzFGwwgAyhYl7exsyUE6S94mEOHcK4mSIXBl0NIfQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/authpub/refresh_token",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"authpub",
+						"refresh_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token_revoke",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsImtpZCI6IkhQZTA5UG1weUJYbGxoRVhSU2JqT0k4WmZlUEk3TXl5IiwidHlwIjoiSldUIn0.eyJzdWIiOiJzaGFudSIsImV4cCI6MTY3NzUzMzMyN30.DyrTbI0zWVRbqvyqYrMXVzjq8xG9yMfjxPaj4Bo3K8g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/auth/revoke_token",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"auth",
+						"revoke_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "action_create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/rbac/create_action",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"rbac",
+						"create_action"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actions_list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/rbac/actions",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"rbac",
+						"actions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "application_create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"iam\",\n    \"description\": \"Application that handles the authentication ,token generation and rbac of all the other applcations\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/rbac/create_application",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"rbac",
+						"create_application"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "applications_list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/rbac/applications",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"rbac",
+						"applications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resource_create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"User\",\n    \"description\": \"A sample API resouurce in this case a user\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/rbac/create_resource",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"rbac",
+						"create_resource"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resource_list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"user\",\n    \"description\": \"Users of all applcations in the system\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/rbac/resources",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"rbac",
+						"resources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "permission_create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"iam_admin\",\n    \"description\": \"List as get access to User resource\",\n    \"resource_actions\": {\n        \"User\": [{\"type\": \"allow\", \"actions\":[\"list\", \"get\"]}]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/rbac/create_permission",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"rbac",
+						"create_permission"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "permission_list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"user\",\n    \"description\": \"Users of all applcations in the system\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/rbac/permissions",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"rbac",
+						"permissions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "role_create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"iam_admin\",\n    \"description\": \"All access to user resources\",\n    \"permissions\": [\"user_admin\", \"rbac_am\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/rbac/create_role",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"rbac",
+						"create_role"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "role_list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"user\",\n    \"description\": \"Users of all applcations in the system\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/iam/v1/rbac/roles",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"iam",
+						"v1",
+						"rbac",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

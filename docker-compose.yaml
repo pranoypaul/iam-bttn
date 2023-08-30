@@ -1,0 +1,72 @@
+version: '3.9'
+
+networks:
+  store-net:
+    external: true
+
+services:
+
+  #######################################
+  # IAM mongo db
+  #######################################
+  mongo-db:
+    container_name: mongo-db
+    image: mongo:6.0
+    volumes:
+      - ~/mongo:/data/db
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=app_user
+      - MONGO_INITDB_ROOT_PASSWORD=app_password
+      - MONGO_INITDB_DATABASE=Authentication
+    networks:
+      - store-net
+    healthcheck:
+      test: echo 'mongodb.runCommand("ping").ok'
+      interval: 10s
+      timeout: 10s
+      retries: 5
+  #######################################
+  # IAM application
+  #######################################
+  iam:
+    build: ./
+    container_name: iam-backend
+    image: iam:latest
+    ports:
+      - "8000:80"
+    environment:
+      - FASTAPI_DEBUG=True
+      - FASTAPI_USE_REDIS=False
+      - FASTAPI_MONGO_CONNECTION_STRING=mongodb://app_user:app_password@mongo-db:27017
+      - FASTAPI_DB_NAME=Authentication
+      - FASTAPI_REDIS_CONNECTION_STRING=redis://redis_cache:6379/0
+    networks:
+      - store-net
+    depends_on:
+      mongo-db:
+        condition: service_healthy
+      redis-cache:
+        condition: service_healthy
+      
+  #######################################
+  # Redis cache
+  #######################################
+  redis-cache:
+    image: redis:7.0.8
+    container_name: redis-cache
+    restart: always
+    # ports:
+    #   - "6379:6379"
+    networks:
+      - store-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    volumes:
+    - ./volumes/redis-data:/data
+
+
